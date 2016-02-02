@@ -9,6 +9,10 @@ JS1k submission:
 - Minified (1772b JS): http://codegolf.github.io/period1k/final.min.html
 - Minified and packed (1024b JS): http://codegolf.github.io/period1k/final.min.pack.html
 
+Wallpaper:
+
+- 10900x700 (4Mb, PNG): http://codegolf.github.io/period1k/wallpaper.png
+
 Non-JS1k:
 
 - Minified and packed (1024b HTML+JS): http://codegolf.github.io/period1k/final.min.shortest.html
