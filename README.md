@@ -16,4 +16,5 @@ Wallpaper:
 
 Non-JS1k:
 
-- Minified and packed (1024b HTML+JS): http://codegolf.github.io/period1k/final.min.shortest.html
+- Golfed (1227b HTML+JS): http://codegolf.github.io/period1k/final.min.golfed.html
+- Golfed and reduced to 1kb (1024b HTML+JS): http://codegolf.github.io/period1k/final.min.golfed.1k.html
