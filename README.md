@@ -5,9 +5,11 @@ by @MaximeEuziere, @innovati and @subzey
 
 JS1k source:
 
-- Commented source: coming soon
+- Commented source: http://codegolf.github.io/period1k/final.html
 - Minified (1772b JS): http://codegolf.github.io/period1k/final.min.html
 - Minified and packed (1024b JS): http://codegolf.github.io/period1k/final.min.pack.html
+
+<--
 
 Bonus (not JS1k-oriented):
 
@@ -28,3 +30,5 @@ x9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hc
 =i^83>i?B:B+"*",I,H+53),c[E](i+1,I,H+15),j+={117:21,0:17,3:11,11:11,69:5}[i]|1,i+
 ={117:-61,87:15,69:18,55:15}[i]|1'bgColor=0><canvas id=a width=1090 height=700>Hi
 ````
+
+-->

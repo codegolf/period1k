@@ -1,0 +1,231 @@
+<meta charset=utf-8>
+<body id=b>
+<center>
+<canvas id=a width=1090 height=700>
+<script>
+c=a.getContext("2d");
+a.style.maxWidth="99%";
+
+
+/*** entry ***/
+
+// ================= //
+//     JS1k'16       //
+//                   //
+//  PERIOD1K TABLE   //
+//                   //
+//        by         //
+//  Maxime Euzière   //
+//   Tommy Hodgins   //
+//     & Subzey      //
+// ================= //
+
+// --------------
+//  Introduction
+// --------------
+
+// This demo draws a periodic table of chemical elements on a 1090*700 px canvas, including as much useful information as possible, in 1kb.
+// It is drawn from top-left to bottom-right using a single loop and two variables:
+// i represents the current atomic number (values: 1-56,71-88,103-118-57-70,89-102).
+// j represents the current cell of the periodic table (including "gaps", values: 0-178).
+// The cells measure 58*58px and are separated by 2px gutters.
+// The page's background is colored in black using the ancestral hack "b.bgColor=0" (b is the page's <body>).
+// The coordinates of an element are computed from j: horizontally "j%18*60", vertically "~~(j/18)*60".
+// These coordinates are repeated many times in the source code, instead of being set in variables like x and y, to optimize RegPack compression.
+
+for(i=j=b.bgColor=0;j<178;){
+
+  // --------------------
+  //  1: Element's group
+  // --------------------
+
+  // The periodic table represents the element groups as a background color for each element.
+  // According to https://en.wikipedia.org/wiki/Names_for_sets_of_chemical_elements ,
+  // There are a ton of different and overlapping element groups, and all periodic tables are a little different because of that.
+  // Here's our classification:
+  
+  // 0: Alkali metals – Li, Na, K, Rb, Cs, Fr.
+  // 1: Alkaline earth metals – Be, Mg, Ca, Sr, Ba, Ra.
+  // 2: Halogens – F, Cl, Br, I, At.
+  // 3: Noble gases – He, Ne, Ar, Kr, Xe, Rn.
+  // 4: Lanthanoids – La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu.
+  // 5: Actinoids – Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md, No, Lr.
+  // 6: Transition metals – Elements in groups 3 to 12.
+  // 7: poor metals: Al, Ga, In, Sn, Tl, Pb, Bi, Po.
+  // 8: Metalloids – B, Si, Ge, As, Sb, Te, At (too).
+  // 9: non-metals: H, C, N, O, P, S, Se.
+
+  // These sets are numbered from 0 to 9 and placed in a 118-char string (1 char per element).
+  // Each element's char is multiplied by 35 (thanks to duck-typing) to define the hue of the hsl background color.
+  // Then the rectangle is drawn
+  
+  c.fillStyle="hsl("+"9301899923017899230166666666667889230166666666667788230144444444444444466666666677772301555555555555555666666666777723"[i]*35+",48%,48%)";
+  c.fillRect(j%18*60,~~(j/18)*60+30,58,58);
+
+  // -------------------
+  //  2. Element's name 
+  // -------------------
+
+  // The 118 elements' abbreviated names are drawn in the middle of each cell with a little shadow effect.
+  // These names were concatenated in a long string like that:
+  // 
+  // ["H","He","Li","Be","B","C","N","O","F","Ne","Na","Mg","Al","Si","P","S","Cl","Ar","K","Ca","Sc","Ti",
+  // "V","Cr","Mn","Fe","Co","Ni","Cu","Zn","Ga","Ge","As","Se","Br","Kr","Rb","Sr","Y","Zr","Nb","Mo","Tc",
+  // "Ru","Rh","Pd","Ag","Cd","In","Sn","Sb","Te","I","Xe","Cs","Ba","La","Ce","Pr","Nd","Pm","Sm","Eu","Gd",
+  // "Tb","Dy","Ho","Er","Tm","Yb","Lu","Hf","Ta","W","Re","Os","Ir","Pt","Au","Hg","Tl","Pb","Bi","Po","At",
+  // "Rn","Fr","Ra","Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","Md","No","Lr","Rf","Db","Sg",
+  // "Bh","Hs","Mt","Ds","Rg","Cn","Uut","Fl","Uup","Lv","Uus","Uuo].join();
+  //
+  // The resulting string, used in the code below, is split before each uppercase letter to retrieve the array above.
+  // The name is drawn two times (in gray and in white) with a small offset to make a text-shadow effect.
+  // The two long fillText() statements are repeated on purpose, to optimize RegPack compression.
+  
+  // Set font size, centering, shadow color
+  
+  c.font="bold 15pt arial";
+  c.textAlign="center";
+  c.fillStyle="#444";
+  
+  // Draw text shadow
+  
+  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnUutFlUupLvUusUuo".split(/(?=[A-Z])/)[i],j%18*60+32,~~(j/18)*60+68);
+  
+  // Set text color
+  
+  c.fillStyle="#fff";
+  
+  // Draw text
+  
+  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnUutFlUupLvUusUuo".split(/(?=[A-Z])/)[i],j%18*60+30,~~(j/18)*60+66);
+
+  // Set a smaller font size for the other texts
+  
+  c.font="9pt arial";
+  
+  // -------------------------------------------------
+  //  3. Element's relative atomic mass and stability
+  // -------------------------------------------------
+
+  // The relative atomic mass of an element is the average weight of the element and its isotopes,
+  // pondered by their abundance, and compared to 1/12th of the mass of a carbon-12 element. 
+  // More information here: https://en.wikipedia.org/wiki/Relative_atomic_mass
+
+  // Atomic masses are rounded to 2 decimals.
+  // Each atomic mass is multiplied by 100 to get rid of the decimal part, and placed in this array:
+  
+  //  m=[100,400,694,901,1081,1201,1401,1600,1900,2018,2299,2431,2698,2809,3097,3206,3545,3995,3910,4008,
+  //  4496,4787,5094,5200,5494,5585,5893,5869,6355,6538,6972,7263,7492,7897,7990,8380,8547,8762,8891,9122,
+  //  9291,9595,9791,10107,10291,10642,10787,11241,11482,11871,12176,12760,12690,13129,13291,13733,13891,
+  //  14012,14091,14424,14491,15036,15196,15725,15893,16250,16493,16726,16893,17305,17497,17849,18095,
+  //  18384,18621,19023,19222,19508,19697,20059,20438,20720,20898,20898,20999,22202,22302,22603,22703,
+  //  23204,23104,23803,23705,24406,24306,24707,24707,25108,25208,25710,25810,25910,26612,26712,26813,
+  //  27113,27013,27715,27816,28117,28217,28518,28619,28919,28919,29320,29421,29421];
+  
+  // Each number of the array is converted into 2 ASCII chars using this JS (ES6) code:
+
+  //   m=m.map((v,i)=>v-i*256+(i>68?570:1100)).map(v=>v.toString(36)).join('');
+
+  // Which leads to:
+
+  //   m="xcykzmy9w5sdqtp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd\
+  //      8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lo\
+  //      hctqpel3mbcfotkilrhfioedfl8hci8713"
+
+  // The decoding looks like this, for the i-th element:
+
+  //   mass=parseInt(m.substr(i*2,2),36)+i*256-(i>68?570:1100);
+  
+  // The resulting mass is converted to a string and split two chars before the end to make an array separating entire part and decimal part:
+  
+  //   mass=(parseInt(m.substr(i*2,2),36)+i*256-(i>68?570:1100)+"").split(/(?=..$)/);
+  
+  // This array (eg. ["294",21"]) will be coerted to a string (eg. "294,21") when fillText will try to draw it on the canvas.
+  // This approach allows to keep all trailing zeroes in the relative atomic masses.
+  // If g was just a floating-point number, it would appear as "16" for Oxygen (element 8) instead of "16,00", or "126.9" for Iodine (element 53) instead of "126,90"
+  // The code below uses this techniques, with a lot of repetitions to optimize for RegPack.
+    
+  // Stable elements are elements that have at least one stable isotope.
+  // "Unstable" elements have isotopes with half-lives between a few minutes and a few million years.
+  // Elements 43, 61 and higher than 85 are unstable.
+  // Their relative atomic masses are drawn between parenthesis.
+  // More information here: https://commons.wikimedia.org/wiki/File:Periodic_Table_Stability_%26_Radioactivity.png
+  // And here: https://en.wikipedia.org/wiki/Radioactive_decay
+  // Elements 1 to 4 also get an extra decimal (respectively 8, 3, 1 and 2), because their mass is lower than 10 and there was enough room for that.
+
+  c.fillText(
+    
+    // Stable elements masses
+    
+    (i!=42^i!=60^i<83)
+    
+    ?
+    
+    (parseInt('xcykzmy9w5sdqtp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hci8713'.substr(i*2,2),36)+i*256-(i>68?570:1100)+"").split(/(?=..$)/)
+    
+    // Extra decimal for elements 1, 2, 3, 4.
+    
+    +["8312"[i]]
+    
+    :
+    
+    // Unstable elements masses between parenthesis
+    
+    ("("+(parseInt('xcykzmy9w5sdqtp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hci8713'.substr(i*2,2),36)+i*256-(i>68?570:1100)+"").split(/(?=..$)/)+")"),
+    j%18*60+30,
+    ~~(j/18)*60+83
+  );
+
+  
+  // ------------------
+  //  4. Atomic number
+  // ------------------
+
+  // The atomic number (written on top of each cell) represents the number of protons in the current element.
+  // More information: https://en.wikipedia.org/wiki/Atomic_number
+  
+  c.fillText(i+1,j%18*60+30,~~(j/18)*60+45);
+  
+  // ----------
+  //  5. next!
+  // ----------
+
+  // j offsets:
+  // This operation adds the "gaps" in the table.
+  // i.e. 17 gaps after element 0, 11 gaps after element 3, etc.
+  // If there's no gap, j is just incremented by 1.
+
+  j+={117:21,0:17,3:11,11:11,69:5}[i]|1;
+
+  // i offsets:
+  // This operation adds the "jumps" in the atomic numbers.
+  // i.e: 15 jumps after element 55, etc.
+  // If there's no jump, i is just incremented by 1.
+
+  i+={117:-61,87:15,69:18,55:15}[i]|1;
+  
+  // The values are shuffled a little to optimize RegPack compression (note the repetition of "+={117:" and "5}[i]|1")
+  
+}
+
+// -------
+//  Title
+// -------
+
+// Draw the title "PERIOD1K" on top of the canvas, to fill the remaining bytes.
+
+c.font="bold 15pt arial";
+c.fillText("PERIOD1K",545,50);
+
+// --------------------------
+//  Minification and packing
+// --------------------------
+
+// - Pass this code through closure compiler, advanced mode (https://closure-compiler.appspot.com).
+// - Remove the line breaks and the trailing semicolon generated by closure compiler.
+// - Paste the result in RegPack (http://siorki.github.io/regPack.html). Pack with the following setup: 10 / 0 / 1 / "Longest string first"
+// - Result: 1024b.
+// - Yay!
+
+/*** end of entry ***/
+
+</script>
