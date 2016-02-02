@@ -11,7 +11,8 @@ JS1k submission:
 
 Wallpaper:
 
-- 10900x700 (1Mb, PNG): http://codegolf.github.io/period1k/wallpaper.png
+- 10900x7000 (1.1Mb, PNG): http://codegolf.github.io/period1k/wallpaper.png
+- 4000x3000 (0.3Mb, PNG): http://codegolf.github.io/period1k/wallpaper1.png
 
 Non-JS1k:
 
