@@ -1,10 +1,10 @@
 <meta charset=utf-8>
 <body id=b>
 <center>
-<canvas id=a width=10900 height=7000>
+<canvas id=a width=1090 height=700>
 <script>
 c=a.getContext("2d");
-//a.style.maxWidth="99%";
+a.style.maxWidth="99%";
 
 
 /*** entry ***/
@@ -60,7 +60,7 @@ for(i=j=b.bgColor=0;j<178;){
   // Then the rectangle is drawn
   
   c.fillStyle="hsl("+"9301899923017899230166666666667889230166666666667788230144444444444444466666666677772301555555555555555666666666777723"[i]*35+",48%,48%)";
-  c.fillRect(j%18*600,~~(j/18)*600+300,580,580);
+  c.fillRect(j%18*60,~~(j/18)*60+30,58,58);
 
   // -------------------
   //  2. Element's name 
@@ -82,13 +82,13 @@ for(i=j=b.bgColor=0;j<178;){
   
   // Set font size, centering, shadow color
   
-  c.font="bold 150pt arial";
+  c.font="bold 15pt arial";
   c.textAlign="center";
   c.fillStyle="#444";
   
   // Draw text shadow
   
-  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnUutFlUupLvUusUuo".split(/(?=[A-Z])/)[i],j%18*600+320,~~(j/18)*600+680);
+  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnUutFlUupLvUusUuo".split(/(?=[A-Z])/)[i],j%18*60+32,~~(j/18)*60+68);
   
   // Set text color
   
@@ -96,11 +96,11 @@ for(i=j=b.bgColor=0;j<178;){
   
   // Draw text
   
-  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnUutFlUupLvUusUuo".split(/(?=[A-Z])/)[i],j%18*600+300,~~(j/18)*600+660);
+  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnUutFlUupLvUusUuo".split(/(?=[A-Z])/)[i],j%18*60+30,~~(j/18)*60+66);
 
   // Set a smaller font size for the other texts
   
-  c.font="90pt arial";
+  c.font="9pt arial";
   
   // -------------------------------------------------
   //  3. Element's relative atomic mass and stability
@@ -140,7 +140,7 @@ for(i=j=b.bgColor=0;j<178;){
   //   mass=(parseInt(m.substr(i*2,2),36)+i*256-(i>68?570:1100)+"").split(/(?=..$)/);
   
   // This array (eg. ["294",21"]) will be coerted to a string (eg. "294,21") when fillText will try to draw it on the canvas.
-  // Uncoment the .join(".") snippets to have points instead of commas. 
+    // Uncoment the .join(".") snippets to have points instead of commas. 
   // This approach allows to keep all trailing zeroes in the relative atomic masses.
   // If g was just a floating-point number, it would appear as "16" for Oxygen (element 8) instead of "16,00", or "126.9" for Iodine (element 53) instead of "126,90"
   // The code below uses this techniques, with a lot of repetitions to optimize for RegPack.
@@ -172,8 +172,8 @@ for(i=j=b.bgColor=0;j<178;){
     // Unstable elements masses between parenthesis
     
     ("("+(parseInt('xcykzmy9w5sdqtp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hci8713'.substr(i*2,2),36)+i*256-(i>68?570:1100)+"").split(/(?=..$)/)/*.join(".")*/+")"),
-    j%18*600+300,
-    ~~(j/18)*600+830
+    j%18*60+30,
+    ~~(j/18)*60+83
   );
 
   
@@ -184,7 +184,7 @@ for(i=j=b.bgColor=0;j<178;){
   // The atomic number (written on top of each cell) represents the number of protons in the current element.
   // More information: https://en.wikipedia.org/wiki/Atomic_number
   
-  c.fillText(i+1,j%18*600+300,~~(j/18)*600+450);
+  c.fillText(i+1,j%18*60+30,~~(j/18)*60+45);
   
   // ----------
   //  5. next!
@@ -214,8 +214,8 @@ for(i=j=b.bgColor=0;j<178;){
 
 // Draw the title "PERIOD1K" on top of the canvas, to fill the remaining bytes.
 
-c.font="bold 150pt arial";
-c.fillText("PERIOD1K",5450,500);
+c.font="bold 15pt arial";
+c.fillText("PERIOD1K",545,50);
 
 // --------------------------
 //  Minification and packing
