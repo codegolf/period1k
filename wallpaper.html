@@ -1,10 +1,10 @@
 <meta charset=utf-8>
 <body id=b>
 <center>
-<canvas id=a width=1090 height=700>
+<canvas id=a width=4000 height=3000>
 <script>
 c=a.getContext("2d");
-a.style.maxWidth="99%";
+//a.style.maxWidth="99%";
 
 
 /*** entry ***/
@@ -62,7 +62,7 @@ for(i=j=b.bgColor=0;j<178;){
   // Then the rectangle is drawn
   
   c.fillStyle="hsl("+"9301899923017899230166666666667889230166666666667788230144444444444444466666666677772301555555555555555666666666777723"[i]*35+",48%,48%)";
-  c.fillRect(j%18*60,~~(j/18)*60+30,58,58);
+  c.fillRect(j%18*208+150,~~(j/18)*208+200,200,200);
 
   // -------------------
   //  2. Element's name 
@@ -84,13 +84,13 @@ for(i=j=b.bgColor=0;j<178;){
   
   // Set font size, centering, shadow color
   
-  c.font="bold 15pt arial";
+  c.font="bold 55pt arial";
   c.textAlign="center";
   c.fillStyle="#444";
   
   // Draw text shadow
   
-  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg".split(/(?=[A-Z])/)[i],j%18*60+32,~~(j/18)*60+68);
+  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg".split(/(?=[A-Z])/)[i],j%18*208+255,~~(j/18)*208+327);
   
   // Set text color
   
@@ -98,11 +98,11 @@ for(i=j=b.bgColor=0;j<178;){
   
   // Draw text
   
-  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg".split(/(?=[A-Z])/)[i],j%18*60+30,~~(j/18)*60+66);
+  c.fillText("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGeAsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg".split(/(?=[A-Z])/)[i],j%18*208+250,~~(j/18)*208+323);
 
   // Set a smaller font size for the other texts
   
-  c.font="9pt arial";
+  c.font="30pt arial";
   
   // -------------------------------------------------
   //  3. Element's relative atomic mass and stability
@@ -163,7 +163,7 @@ for(i=j=b.bgColor=0;j<178;){
     
     ?
     
-    (parseInt('xcykzmy9w5sdqtp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hci8713'.substr(i*2,2),36)+i*256-(i>68?570:1100)+"").split(/(?=..$)/)/*.join(".")*/
+    (parseInt('xcykzmy9w5sdqtp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hci8713'.substr(i*2,2),36)+i*256-(i>68?570:1100)+"").split(/(?=..$)/).join(".")
     
     // Extra decimal for elements 1, 2, 3, 4.
     
@@ -173,9 +173,9 @@ for(i=j=b.bgColor=0;j<178;){
     
     // Unstable elements masses between parenthesis
     
-    ("("+(parseInt('xcykzmy9w5sdqtp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hci8713'.substr(i*2,2),36)+i*256-(i>68?570:1100)+"").split(/(?=..$)/)/*.join(".")*/+")"),
-    j%18*60+30,
-    ~~(j/18)*60+83
+    ("("+(parseInt('xcykzmy9w5sdqtp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hci8713'.substr(i*2,2),36)+i*256-(i>68?570:1100)+"").split(/(?=..$)/).join(".")+")"),
+    j%18*208+250,
+    ~~(j/18)*208+380
   );
 
   
@@ -186,7 +186,7 @@ for(i=j=b.bgColor=0;j<178;){
   // The atomic number (written on top of each cell) represents the number of protons in the current element.
   // More information: https://en.wikipedia.org/wiki/Atomic_number
   
-  c.fillText(i+1,j%18*60+30,~~(j/18)*60+45);
+  c.fillText(i+1,j%18*208+250,~~(j/18)*208+250);
   
   // ----------
   //  5. next!
@@ -216,8 +216,8 @@ for(i=j=b.bgColor=0;j<178;){
 
 // Draw the title "PERIOD1K" on top of the canvas, to fill the remaining bytes.
 
-c.font="bold 15pt arial";
-c.fillText("PERIOD1K",545,50);
+c.font="bold 55pt arial";
+c.fillText("PERIOD1K",2000,200);
 
 // --------------------------
 //  Minification and packing
