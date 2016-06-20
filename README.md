@@ -1,6 +1,8 @@
 JS1K 2016 ENTRY: PERIOD1K
 ===
 
+(updated in june 2016 with the names of the four new elements)
+
 by @MaximeEuziere, @innovati and @subzey
 
 JS1k submission:
@@ -13,9 +15,9 @@ Wallpaper:
 
 - 4000x3000 (0.3Mb, PNG): http://codegolf.github.io/period1k/wallpaper.png
 
-Non-JS1k:
+After JS1k:
 
-- Golfed (1016b HTML+JS): http://codegolf.github.io/period1k/final.min.golfed.html
+- Golfed (1019b HTML+ES6, no canvas): http://codegolf.github.io/period1k/final.min.golfed.html
 
 ````html
 <body onload='for(i=j=0;178>j;)b.innerHTML+=`<font face=arial><center style=background:hsl(${35*((("#{p 7{n 7
