@@ -17,7 +17,7 @@ Wallpaper:
 
 After JS1k:
 
-- Golfed (1019b HTML+ES6, no canvas): http://codegolf.github.io/period1k/final.min.golfed.html
+- Golfed (1016b HTML+ES6, no canvas): http://codegolf.github.io/period1k/final.min.golfed.html
 
 ````html
 <body onload='for(i=j=0;178>j;)b.innerHTML+=`<font face=arial><center style=background:hsl(${35*((("#{p 7{n 7
