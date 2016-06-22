@@ -1,0 +1,161 @@
+<body id=b bgColor=0>
+<script>
+for(
+  // Start a loop that will run 178 times.
+  // That's the total number of cells drawn. 118 cells are "visible", the others are not.
+  // The variable j is used to count them.
+  // The variable i corresponds to the current visible element, with values between 0 and 117.
+  // The variable z corresponds to the number of "invisible" cells to be drawn until next "visible" element.
+  i = j = z = 0;
+  j < 178;
+  j++,
+  
+  // If z is greater than zero, it's decremented.
+  // If a gap needs to be made, z is set to the size of the gap.
+  // (i.e. 16 black cells after H, 10 after Be, 10 after Mg, 20 after Og and 4 after Yb).
+  // If z is equal to zero, i is incremented to the index of the next element to draw.
+  // Sometimes, due to the shape of the table, we need to make jumps (56 to 71, 88 to 103, 118 to 57, 70 to 89). 
+  (z=z?z-1:{117:20,0:16,3:10,11:10,69:4}[i]|0)||(i+={117:-61,87:15,69:18,55:15}[i]|1)
+)
+  // Inside the loop:
+  // Set the variables w and y using ES6 destructuring: "[w, y]=[value, value]".
+  // The 236-char string below is split before each uppercase letter.
+  // (because each element's name starts with an uppercase letter).
+  // The i'th element of the resulting array is split before a number (if a number is present).
+  // Then w is set to the current element's name, and y to the number following it.
+  // This number represents the element's state at room temperature (1: gas, 2: liquid, default: solid)
+  // Ex for i == 1: w = "H", y = "1".
+  [w,y] = "H1He1LiBeBCN1O1F1Ne1NaMgAlSiPSCl1Ar1KCaScTiVCrMnFeCoNiCuZnGaGeAsSeBr2Kr1RbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXe1CsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHg2TlPbBiPoAtRn1FrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg1"
+          .split(/(?=[A-Z])/)[i]
+          .split(/(?=\d)/),
+  
+  // Write a <center> HTML element inside the page's body, referred to as its id "b".
+  // This element has a CSS font-size, width, margin and padding set in vw units to make it responsive,
+  // but also to have an automatic line break at the end of each period of the table.
+  // The font is set to Arial.
+  // The text color is set to #fff and the background color is set to a computed value only if z is equal to zero.
+  // If z is equal to zero, a ";" is inserted between color and background.
+  // If z is different than zero, "undefined" is inserted between instead,
+  // so the inline CSS code will look like "...color:#fffundefinedbackground:...",
+  // and neither the color nor the background will be set, leaving the cell entirely black.
+  // The black cells are used to draw the "gaps" of the table.
+  // The following string is a template literal: `...${expression}...` is similar to "..."+(expression)+"..."
+  b.innerHTML += `<center style="font:1vw arial;float:left;width:4vw;margin:.2vw;padding:.4vw;color:#fff${
+
+    ";"[z] // This line produces ";" or "undefined" based on the value of z
+    
+  }background:hsl(${
+    
+    // The cell's background is written in hsl format. The first value (the hue) varies according to the element's type.
+    // The 59-char string below contains the type of all 118 elements.
+    // Each character contains the type of two consecutive elements.
+    // There are 10 types of elements, numbered from 0 to 9. We chose the following classification:
+    //
+    // 0: non-metals: H, C, N, O, P, S, Se.
+    // 1: Alkaline earth metals – Be, Mg, Ca, Sr, Ba, Ra.
+    // 2: Halogens – F, Cl, Br, I, At.
+    // 3: Noble gases – He, Ne, Ar, Kr, Xe, Rn.
+    // 4: Lanthanoids – La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu.
+    // 5: Actinoids – Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md, No, Lr.
+    // 6: Transition metals – Elements in groups 3 to 12.
+    // 7: poor metals: Al, Ga, In, Sn, Tl, Pb, Bi, Po.
+    // 8: Metalloids – B, Si, Ge, As, Sb, Te.
+    // 9: Alkali metals – Li, Na, K, Rb, Cs, Fr.
+    //
+    // How the data was encoded:
+    // - Take two consecutive elements (ex: H and He)
+    //  (the type of H is 0, the type of He is 3).
+    // - Their concatenation makes 03. Converted to an int, that makes 3.
+    // - We add 32 to this number and convert it to a printable ASCII char
+    //   (printable chars start at U+0020 = 32).
+    //   03+32=35. ASCII char 35 is "#".
+    // - Repeat
+    
+    // How the data is decoded here:
+    // - Read a char (for example "#").
+    // - Convert it to a charCode (=> 35).
+    // - Substract 32 (=> 3).
+    // - Divide by 10 (=> 0.3).
+    // - Converted to a string ("0.3")
+    // - Read the character i%2*2 of that string
+    //  (the 0th character for an even element like H, or the 2nd character for an odd character like He).
+    // - Convert this char to an int and multiply it by 35 to set the desired hue (0 for H, 105 for He).
+    
+    35 * // Final multiplication by 35
+    (
+      .1 * // Division by 10
+      (
+
+        "#{p 7{n 7{bbbbbnp7{bbbbbmx7{LLLLLLLNbbbbmm7{WWWWWWWXbbbbmm7"
+        .charCodeAt(i / 2) // Conversion of the current char to a charCode
+        
+        - 32 // remove 32 (that was added to ensure that the current char is in the printable ASCII range) 
+      )
+      + "" // Conversion to a string
+    )
+
+    [i % 2 * 2] // Take the 0th or 2nd char of the string
+
+    | 0 // Convert it to an integer
+    
+  }, 70%, 40%)">${
+
+    i + 1 // Atomic mass (it's just i+1)
+    
+  } ${
+
+    "SGL"[y || 0] // Element's state at room temperature ("S" or "G" or "L", depending on the value of y, or 0 by default)
+    
+  }<h2>${
+
+    w // Element's abbreviated name, put into a <h2> HTML element to make it bigger and ensure a line break before and after.
+    
+  }</h2>`
+  
+  // The template string stops here, because it's shorter to just concatenate the remining data instead of inserting it with "${}"
+  
+  +
+  (
+    
+    // Now we write the element's relative atomic mass
+    // (the average weight of the element and its isotopes, pondered by their abundance, and compared to 1/12 of the mass of a carbon-12 element).
+    // All the masses are stored in the 236-char string below
+    // 
+    // How the data was encoded:
+    // - each mass is multiplied by 100 to get rid of the decimal part, and placed in an array ( => m=[100,400,(...),29421]).
+    // - each number of the array is converted to 2 ASCII chars using this magic formula:
+    //   m=m.map((v,i)=>v-i*256+(i>68?570:1100)).map(v=>v.toString(36)).join('')". ( => m="xcyk(...)13")
+    //   This formula exploits the fact that the mass*100 is nearly equal to 256 times the atomic number plus 570 (when i>68) or 1100 (when i<68).
+    //   The "difference" is smaller than 1295, and so it can be encoded on only two chars in base 36.
+    
+    // The data is decoded by performing exactly the opposite operation:
+    // (parseInt(m.substr(i * 2, 2), 36) + i * 256 - (i > 68 ? 570 : 1100) / 100).toFixed(2)
+    
+    (
+      
+      // Read the 2 chars corresponding to the i'th element, in base 36
+      parseInt(
+        "xcykzmy9w5sdqtp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hci8713"
+        .substr(2 * i, 2),
+        36
+      )
+      
+      // Apply the reverse of the magic formula
+      + 256 * i - (68 < i ? 570 : 1100)
+    )
+    
+    // Divide by 100
+    / 100  
+  )
+  
+  // Round to 2 decimals
+  .toFixed(2)
+  
+  +
+  
+  // And finally, we show the elements's stability:
+  // An asterisk "*" is added to the atomic mass if the element has no stable isotope (i.e. when i is equal to 42 or 60 or higher than 83)
+  // i.e. when the element is not stable, 42 != i ^ 60 != i ^ 83 > i == false == 0. Else, it's equal to 1.
+  // This result is used to read the 0th or 1th char of the string "* " and concatenate it to the string.
+  "* "[42 != i ^ 60 != i ^ 83 > i]
+</script>

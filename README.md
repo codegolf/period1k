@@ -15,9 +15,13 @@ Wallpaper:
 
 - 4000x3000 (0.3Mb, PNG): http://codegolf.github.io/period1k/wallpaper.png
 
+----
+
 After JS1k:
 
 - Golfed (1024b HTML+ES6, no canvas): http://codegolf.github.io/period1k/final.min.golfed.html
+- Commented: http://codegolf.github.io/period1k/golfed.commented.html
+- Source code:
 
 ````html
 <body onload='for(i=j=z=0;j<178;j++,(z=z?z-1:{117:20,0:16,3:10,1
