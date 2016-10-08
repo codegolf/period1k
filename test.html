@@ -7,37 +7,36 @@ c=a.getContext("2d");
 // All the data
 // "[Abbr][Mass](Color)(Jump)(Hole)(state)" x 118
 // Where [Abbr] = element's name (2 chars, starting with a capital letter
+//       (Color) = type 1 to 9 (default: last one) (1 digit, optional)
 //       [Mass] = atomic mass (2 chars)
-//       (Color) = type 1 to 9 (default: 6) (1 digit, optional)
-//       (Jump) = a value corresponding to -61, 15 or 18 (U+0010 =  = -61, U+0011=  = 15, U+0012 =  = 18, optional)
-//       (Hole) = an even value between 4 and 20 divided by 2 minus 1 (1 char between U+0001 and U+0009, optional)
-//       (state) = 1 char saying if the element is liquid or gas (U+000E =  = liquid, U+000F =  = gas, default = solid, optional)
+//       (liquid) = "~" (optional)
+//       (gas) = "#" (optional)
 
 
 d = 
-'H xc9\
-Heyk3\
-Lizm0\
-Bey91\
-B w58\
-C sd9\
-N qt9\
-O p89\
-F qg2\
-Nemm3\
-Nanb0\
-Mgjv1\
-Alk67\
-Sig58\
-P h19\
-S cy9\
-Clf92\
-Arkn3\
-K b60\
-Ca6s1\
-Scd8\
+'H9xc#\
+He3yk#\
+Li0zm\
+Be1y9\
+B8w5\
+C9sd\
+Nqt#\
+Op8#\
+F2qg#\
+Ne3mm#\
+Na0nb\
+Mg1jv\
+Al7k6\
+Si8g5\
+P9h1\
+Scy\
+Cl2f9#\
+Ar3kn#\
+K0b6\
+Ca16s\
+Sc6d8\
 Tie7\
-V fm\
+Vfm\
 Crbg\
 Mnci\
 Fe7x\
@@ -45,15 +44,15 @@ Co9d\
 Ni1l\
 Cu7z\
 Zn5y\
-Gaaw7\
-Gebv8\
-Asb48\
-Sef99\
-Braq2\
-Kreg3\
-Rbbz0\
-Srau1\
-Y 7b\
+Ga7aw\
+Ge8bv\
+Asb4\
+Se9f9\
+Br2aq~\
+Kr3eg#\
+Rb0bz\
+Sr1au\
+Y67b\
 Zr6m\
 Nb47\
 Mo5j\
@@ -63,62 +62,62 @@ Rh3j\
 Pd66\
 Ag33\
 Cd8l\
-In867\
-Snbv7\
-Sbd88\
-Temc8\
-I da2\
-Xeid3\
-Csfr0\
-Bakx1\
-Lai74\
-Ceeg4\
-Pr9j4\
-Ndbo4\
-Pm6f4\
-Smeg4\
-Eubs4\
-Gdjd4\
-Tbgx4\
-Dyjq4\
-Hojd4\
-Eriq4\
-Tmg94\
-Yb5v4\
-Lu434\
-Hf6r\
+In786\
+Snbv\
+Sb8d8\
+Temc\
+I2da\
+Xe3id#\
+Cs0fr\
+Ba1kx\
+La4i7\
+Ceeg\
+Pr9j\
+Ndbo\
+Pm6f\
+Smeg\
+Eubs\
+Gdjd\
+Tbgx\
+Dyjq\
+Hojd\
+Eriq\
+Tmg9\
+Yb5v\
+Lu443\
+Hf66r\
 Ta6h\
-W 7e\
+W7e\
 Re6v\
 Osax\
 Ir9c\
 Pta6\
 Au8b\
-Hgb9\
-Tleo7\
-Pbfe7\
-Bid87\
-Po647\
-At1t2\
-Rns43\
-Frns0\
-Rap11\
-Ackp5\
-Thri5\
-Pahm5\
-U tx5\
-Npk35\
-Puwg5\
-Ammk5\
-Cmql5\
-Bkjh5\
-Cfni5\
-Esj65\
-Fmq05\
-Mdlo5\
-Nohc5\
-Lrtq5\
-Rfpe\
+Hgb9~\
+Tl7eo\
+Pbfe\
+Bid8\
+Po64\
+At21t\
+Rn3s4#\
+Fr0ns\
+Ra1p1\
+Ac5kp\
+Thri\
+Pahm\
+Utx\
+Npk3\
+Puwg\
+Ammk\
+Cmql\
+Bkjh\
+Cfni\
+Esj6\
+Fmq0\
+Mdlo\
+Nohc\
+Lr5tq\
+Rf6pe\
 Dbl3\
 Sgmb\
 Bhcf\
@@ -127,36 +126,32 @@ Mtki\
 Dslr\
 Rghf\
 Cnio\
-Nhed7\
-Flfl7\
-Mc8h7\
-Lvci7\
-Ts872\
-Og133	'
+Nh7ed\
+Flfl\
+Mc8h\
+Lvci\
+Ts287\
+Og313#'
 .split(/(?=[A-Z])/);
 
 
 // i = element (1-118)
 // j = cell (0-178)
-
 a.style.maxWidth="99%";
 for(i=j=b.bgColor=0;j<178;){
-  c.fillStyle="hsl("+((z=d[i].charAt(4).match(/\d/))==null?6:z)*35+",48%,48%)";
+  [u,v,w,x,y,z]=d[i].match(/^(..*?)(\d)?(..)(#)?(~)?$/);
+  console.log(c.fillStyle="hsl("+(+(w==undefined?t:t=w)*35)+",48%,48%)");
   c.fillRect(j%18*60,~~(j/18)*60+30,58,58);
-  
   c.font="bold 15pt arial";
   c.textAlign="center";
   c.fillStyle="#444";
-  c.fillText(d[i].slice(0,2),j%18*60+32,~~(j/18)*60+68);
+  c.fillText(v,j%18*60+32,~~(j/18)*60+68);
   c.fillStyle="#fff";
-  c.fillText(d[i].slice(0,2),j%18*60+30,~~(j/18)*60+66);
+  c.fillText(v,j%18*60+30,~~(j/18)*60+66);
   c.font="9pt arial";
-  
-  c.fillText(((parseInt(d[i].slice(2,4),36)+256*i-(68<i?570:1100))/100).toFixed(2)+"* "[42!=i^60!=i^83>i],j%18*60+30,~~(j/18)*60+83);
-  
-  c.fillText(i+1+"	"+(["Liq.","Gas","Sol."][(z=d[i].match(/|/))==null?2:z[0].charCodeAt()-0xE]),j%18*60+30,~~(j/18)*60+45);
-  
-  j+=((z=d[i].match(/[-	]/))===null?0:(z[0].charCodeAt()+1)*2)|1;
-  i+=((z=d[i].match(/[-]/))===null?0:[-61,15,18][z[0].charCodeAt()-0x10])|1;
+  c.fillText(((parseInt(x,36)+256*i-(68<i?570:1100))/100).toFixed(2)+"* "[42!=i^60!=i^83>i],j%18*60+30,~~(j/18)*60+83);
+  c.fillText(i+1+" "+"SGL"[!!y+2*!!z],j%18*60+30,~~(j/18)*60+45);
+  j+={117:21,0:17,3:11,11:11,69:5}[i]|1;
+  i+={117:-61,87:15,69:18,55:15}[i]|1;
 }
 </script>
