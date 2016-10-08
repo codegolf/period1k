@@ -1,0 +1,158 @@
+<body id=b xbgColor=0>
+<script>
+// All the data
+// "[Abbr][Mass](Color)(Jump)(Hole)(state)" x 118
+// Where [Abbr] = element's name (2 chars, starting with a capital letter
+//       [Mass] = atomic mass (2 chars)
+//       (Color) = type 1 to 9 (default: 6) (1 digit, optional)
+//       (Jump) = a value corresponding to -61, 15 or 18 (U+0010 =  = -61, U+0011=  = 15, U+0012 =  = 18, optional)
+//       (Hole) = an even value between 4 and 20 divided by 2 minus 1 (1 char between U+0001 and U+0009, optional)
+//       (state) = 1 char saying if the element is liquid or gas (U+000E =  = liquid, U+000F =  = gas, default = solid, optional)
+
+
+d = 
+'H xc9\
+Heyk3\
+Lizm0\
+Bey91\
+B w58\
+C sd9\
+N qt9\
+O p89\
+F qg2\
+Nemm3\
+Nanb0\
+Mgjv1\
+Alk67\
+Sig58\
+P h19\
+S cy9\
+Clf92\
+Arkn3\
+K b60\
+Ca6s1\
+Scd8\
+Tie7\
+V fm\
+Crbg\
+Mnci\
+Fe7x\
+Co9d\
+Ni1l\
+Cu7z\
+Zn5y\
+Gaaw7\
+Gebv8\
+Asb48\
+Sef99\
+Braq2\
+Kreg3\
+Rbbz0\
+Srau1\
+Y 7b\
+Zr6m\
+Nb47\
+Mo5j\
+Tc3v\
+Ru5j\
+Rh3j\
+Pd66\
+Ag33\
+Cd8l\
+In867\
+Snbv7\
+Sbd88\
+Temc8\
+I da2\
+Xeid3\
+Csfr0\
+Bakx1\
+Lu434\
+Hf6r\
+Ta6h\
+W 7e\
+Re6v\
+Osax\
+Ir9c\
+Pta6\
+Au8b\
+Hgb9\
+Tleo7\
+Pbfe7\
+Bid87\
+Po647\
+At1t2\
+Rns43\
+Frns0\
+Rap11\
+Lrtq5\
+Rfpe\
+Dbl3\
+Sgmb\
+Bhcf\
+Hsot\
+Mtki\
+Dslr\
+Rghf\
+Cnio\
+Nhed7\
+Flfl7\
+Mc8h7\
+Lvci7\
+Ts872\
+Og133	\
+Lai74\
+Ceeg4\
+Pr9j4\
+Ndbo4\
+Pm6f4\
+Smeg4\
+Eubs4\
+Gdjd4\
+Tbgx4\
+Dyjq4\
+Hojd4\
+Eriq4\
+Tmg94\
+Yb5v4\
+Ackp5\
+Thri5\
+Pahm5\
+U tx5\
+Npk35\
+Puwg5\
+Ammk5\
+Cmql5\
+Bkjh5\
+Cfni5\
+Esj65\
+Fmq05\
+Mdlo5\
+Nohc5'
+.split(/(?=[A-Z])/);
+for(i=0;i<118;i++){
+ b.innerHTML
+ += "<p>element #" + i
+ + ": name = " + d[i].slice(0,2)
+ + "; mass = " + ((parseInt(d[i].slice(2,4),36)+256*i-(68<i?570:1100))/100).toFixed(2)
+ + "; color = " + ((z=d[i].charAt(4).match(/\d/))==null?6:z)
+ + "; jump = " + ((z=d[i].match(/[-]/))==null?0:[-61,15,18][z[0].charCodeAt()-0x10])
+ + "; hole = " + ((z=d[i].match(/[-	]/))==null?0:(z[0].charCodeAt()+1)*2)
+ + "; state = " + ("LGS"[(z=d[i].match(/|/))==null?2:z[0].charCodeAt()-0xE])
+};
+
+
+
+
+
+
+
+
+
+
+
+// "H  He Li Be B  C  N  O  F  Ne Na Mg Al SiPSCl1Ar1KCaScTiVCrMnFeCoNiCuZnGaGeAsSeBr2Kr1RbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXe1CsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHg2TlPbBiPoAtRn1FrRaAcThPaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg1"
+// "xc yk zm y9 w5 sd qt p8 qg mm nb jv k6 g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v436r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohctqpel3mbcfotkilrhfioedfl8hci8713"         
+// "9  3  0  1  8  9  9  9  2  3  017899230166666666667889230166666666667788230144444444444444466666666677772301555555555555555666666666777723"
+
+</script>
