@@ -4,16 +4,15 @@
 <script>
 c=a.getContext("2d");
 
-// All the data
 // "[Abbr][Mass](Color)(Jump)(Hole)(state)" x 118
-// Where [Abbr] = element's name (2 chars, starting with a capital letter
-//       (Color) = type 1 to 9 (default: last one) (1 digit, optional)
-//       [Mass] = atomic mass (2 chars)
-//       (liquid) = "~" (optional)
-//       (gas) = "#" (optional)
+// Where:
+//  [Abbr] = element's name (2 chars, starting with a capital letter
+//  (Color) = type 1 to 9 (default: last one) (1 digit, optional)
+//  [Mass] = atomic mass (2 chars)
+//  (liquid) = "~" (optional)
+//  (gas) = "#" (optional)
 
-
-d = 
+i=j=b.bgColor=0;
 'H9xc#\
 He3yk#\
 Li0zm\
@@ -84,7 +83,7 @@ Hojd\
 Eriq\
 Tmg9\
 Yb5v\
-Lu443\
+Lu43\
 Hf66r\
 Ta6h\
 W7e\
@@ -116,7 +115,7 @@ Esj6\
 Fmq0\
 Mdlo\
 Nohc\
-Lr5tq\
+Lrtq\
 Rf6pe\
 Dbl3\
 Sgmb\
@@ -131,26 +130,19 @@ Flfl\
 Mc8h\
 Lvci\
 Ts287\
-Og313#'
-.split(/(?=[A-Z])/);
-
-
-// i = element (1-118)
-// j = cell (0-178)
-for(i=j=b.bgColor=0;j<178;){
-  [u,v,w,x,y,z]=d[i].match(/^(..*?)(\d)?(..)(#)?(~)?$/);
-  console.log(c.fillStyle="hsl("+(+(w==undefined?t:t=w)*35)+",48%,48%)");
-  c.fillRect(j%18*60,~~(j/18)*60+30,58,58);
+Og313#\
+H'.replace(/([A-Z].*?)(\d)?(..)(#)?(~)?(?=[A-Z])/g,(u,v,w,x,y,z)=>{
+  c.fillStyle="hsl("+35*(w?t=w:t)+",45%,45%)";
+  c.fillRect(j%18*60,~~(j/18)*60,58,58);
   c.font="bold 15pt arial";
   c.textAlign="center";
   c.fillStyle="#444";
-  c.fillText(v,j%18*60+32,~~(j/18)*60+68);
+  c.fillText(v,j%18*60+32,~~(j/18)*60+38);
   c.fillStyle="#fff";
-  c.fillText(v,j%18*60+30,~~(j/18)*60+66);
+  c.fillText(v,j%18*60+30,~~(j/18)*60+36);
   c.font="9pt arial";
-  c.fillText(((parseInt(x,36)+256*i-(68<i?570:1100))/100).toFixed(2)+"* "[42!=i^60!=i^83>i],j%18*60+30,~~(j/18)*60+83);
-  c.fillText(i+1+" "+"SGL"[!!y+2*!!z],j%18*60+30,~~(j/18)*60+45);
-  j+={117:21,0:17,3:11,11:11,69:5}[i]|1;
-  i+={117:-61,87:15,69:18,55:15}[i]|1;
-}
+  c.fillText(((parseInt(x,36)+256*i-(68<i?570:1100))/100).toFixed(2)+"* "[42!=i^60!=i^83>i],j%18*60+30,~~(j/18)*60+53);
+  c.fillText(i+1+" "+(y?"G":z?"L":"S"),j%18*60+30,~~(j/18)*60+15);
+  j+={0:17,3:11,11:11,69:-68,55:54,87:54,101:-68}[i++]|1;
+})
 </script>
