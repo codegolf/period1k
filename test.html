@@ -1,4 +1,5 @@
 <body id=b>
+<svg id=s width=900 height=900></svg>
 <script>
 
 // ========
@@ -153,19 +154,19 @@ H'
   // Position absolute (instead of fixed) allows to scroll the page, which is generally needed in fullscreen
   // Dimensions in vw unit make the table responsive
   // An ES6 template literal is used to avoid many HTML/var concatenations.
-  b.innerHTML+=`<center style='position:absolute;top:${
+  s.innerHTML+=`<rect width=50 height=50 y=${
   
     // Top offset of the current cell = (5.4 * period + 2) vw
     // "2" is used to move a little the table from the top of the page 
-    ~~(j/18)*5.4+2
+    ~~(j/18)*50
     
-  }vw;left:${
+  } x=${
   
     // Left offset of the current cell = (5 * column + 4.5) vw
     // 4.5 is used to center the table into the page
-    j%18*5+4.5
+    j%18*50
     
-  }vw;font:1vw arial;width:4vw;padding:.4vw;color:#fff;background:hsl(${
+  } style=fill:hsl(${
   
     // Cell's background is defined in HSL. The Hue (H) is equal to w (the element's type) * 35
     // If w is not null, store its value in t
@@ -183,7 +184,9 @@ H'
     // - 9: Alkali metals – Li, Na, K, Rb, Cs, Fr.
     35*(w?t=w:t)
     
-  },70%,40%)'>${
+  },70%,40%)></rect><text x=20 y=20 style='fill:#fff;font:9pt arial'>YOLO</text><text x=20 y=40 style='fill:#fff;font:15pt arial'>YOLO</text><text x=20 y=60 style='fill:#fff;font:9pt arial'>YOLO</text>`
+  
+  /*${
   
     // Element's atomic number
     i+1
@@ -221,6 +224,9 @@ H'
   // - jump 54 cells after elements 56 and 88
   // - jump -68 cells after elements 70 and 102
   // And finally, increment i (next element's index)
+  
+  */
+  
   j+={0:17,3:11,11:11,55:54,87:54,69:-68,101:-68}[i++]|1
 })
 </script>
