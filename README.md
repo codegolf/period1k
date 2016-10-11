@@ -18,6 +18,7 @@ Wallpaper:
 ----
 
 After JS1k:
+---
 
 - Golfed (1024b HTML+ES6, no canvas): http://codegolf.github.io/period1k/final.min.golfed.html
 - Commented: http://codegolf.github.io/period1k/golfed.commented.html
