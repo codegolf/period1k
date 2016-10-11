@@ -1,14 +1,17 @@
-<body id=b>
+<body id=b bgcolor=0 text=#fff>
 <script>
 
 // ===============
 // PERIOD1k reboot
 // ===============
 
+// All thie following code is minified and placed in the body's "onload" attribute.
+// "bgcolor=0" and "text=#fff" respectively set the background black and the text white.
+
 // Initialize i (element counter: 0 to 117)
 // Initialize j (cell counter: 0 to 187. Cells include elements in colors, and holes in black)
 // Set body's bgColor to 0 (black)
-i=j=b.bgColor=0;
+i=j=0;
 
 // Let's put many informations about the 118 elements into a big string:
 // Each line represents an element (line breaks are added here for more clarity)
@@ -150,24 +153,27 @@ H'
 .replace(/(..*?)(\d)?(..)(#)?(~)?(?=[A-Z])/g,(u,v,w,x,y,z)=>{
   
   // Insert a center element in the page's body
-  // Position absolute (instead of fixed) allows to scroll the page, which is generally needed in fullscreen
   // Dimensions in vw unit make the table responsive
   // An ES6 template literal is used to avoid many HTML/var concatenations.
-  b.innerHTML+=`<center style='position:absolute;top:${
+  // The "font" css property is used to set the Arial font-family and a responsive font-size and line-height to the text
+  // The width is used to make the cells responsive (the height is automatically identical everywhere)
+  // The position, top and left properties are used to place precisely each cell in the page.
+  b.innerHTML+=`<center style='font:.8vw/.5vw arial;width:3vw;padding:.4vw;position:absolute;top:calc(50vh + ${
   
-    // Top offset of the current cell = (5.4 * period + 2) vw
-    // "2" is used to move a little the table from the top of the page 
-    ~~(j/18)*5.4+2
+    // Top offset of the current cell = calc(50vh + (period * 4.5 - 23)vw)
+    // This computation allows a vertical centering of the table
+    ~~(j/18)*4.5-21
     
-  }vw;left:${
+  }vw);left:${
   
-    // Left offset of the current cell = (5 * group + 4.5) vw
-    // 4.5 is used to center the table into the page
-    j%18*5+4.5
+    // Left offset of the current cell = (group * 4 + 13)vw
+    // This computation allows a horizontal centering of the table
+    j%18*4+13
     
-  }vw;font:1vw arial;width:4vw;padding:.4vw;color:#fff;background:hsl(${
+  }vw;background:hsl(${
   
     // Cell's background is defined in HSL. The Hue (H) is equal to w (the element's type) * 35
+    // Saturation (S) is set to 70% and Light (L) is set to 40%.
     // If w is not null, store its value in t
     // If w is null, reuse the value stored in t (the color of the previous cell)
     // Legend:
@@ -183,7 +189,9 @@ H'
     // - 9: Alkali metals – Li, Na, K, Rb, Cs, Fr.
     35*(w?t=w:t)
     
-  },70%,40%)'>${
+    // The closing parenthesis of the hsl parameters is omitted bcause it works fine without it.
+  
+  },70%,40%'>${
   
     // Element's atomic number
     i+1
@@ -193,9 +201,10 @@ H'
     // Element's state at room temperature (Gas / Liquid / Solid)
     y?'G':z?'L':'S'
     
-  }<h2 style='margin:0;text-shadow:3px 2px #222'>${
+  }<h2 style='text-shadow:2px 2px#222'>${
   
-    // Element's name, inside a <h2> element with text-shadow and no margins. This element also adds line breaks before and after the name
+    // Element's name, inside a <h2> element with text-shadow.
+    // H2 is a block-level element, and as a result, it adds line breaks before and after the element's name.
     v
     
   }</h2>`

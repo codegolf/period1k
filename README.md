@@ -24,22 +24,14 @@ After JS1k:
 - Source code:
 
 ````html
-<body onload='for(i=j=z=0;j<178;j++,(z=z?z-1:{117:20,0:16,3:10,1
-1:10,69:4}[i]|0)||(i+={117:-61,87:15,69:18,55:15}[i]|1))[w,y]="H
-1He1LiBeBCN1O1F1Ne1NaMgAlSiPSCl1Ar1KCaScTiVCrMnFeCoNiCuZnGaGeAsS
-eBr2Kr1RbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXe1CsBaLaCePrNdPmSmEuGdTb
-DyHoErTmYbLuHfTaWReOsIrPtAuHg2TlPbBiPoAtRn1FrRaAcThPaUNpPuAmCmBk
-CfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg1".split(/(?=[A-Z])/)[
-i].split(/(?=\d)/),b.innerHTML+=`<center style="font:1vw arial;f
-loat:left;width:4vw;margin:.2vw;padding:.4vw;color:#fff${";"[z]}
-background:hsl(${35*(.1*("#{p 7{n 7{bbbbbnp7{bbbbbmx7{LLLLLLLNbb
-bbmm7{WWWWWWWXbbbbmm7".charCodeAt(i/2)-32)+"")[i%2*2]|0},70%,40%
-)">${i+1} ${"SGL"[y||0]}<h2>${w}</h2>`+((parseInt("xcykzmy9w5sdq
-tp8qgmmnbjvk6g5h1cyf9knb66sd8e7fmbgci7x9d1l7z5yawbvb4f9aqegbzau7
-b6m475j3v5j3j66338l86bvd8mcdaidfrkxi7eg9jbo6fegbsjdgxjqjdiqg95v4
-36r6h7e6vax9ca68bb9eofed8641ts4nsp1kprihmtxk3wgmkqljhnij6q0lohct
-qpel3mbcfotkilrhfioedfl8hci8713".substr(2*i,2),36)+256*i-(68<i?5
-70:1100))/100).toFixed(2)+"* "[42!=i^60!=i^83>i]'id=b bgColor=0>
+<body onload="i=j=0;'H9xc#He3yk#Li0zmBe1y9B8w5C9sdNqt#Op8#F2qg#Ne3mm#Na0nbMg1jvAl7k6Si8g5P9h1ScyCl2f9#Ar3kn#K0b6Ca16sSc6d8Tie7Vf
+mCrbgMnciFe7xCo9dNi1lCu7zZn5yGa7awGe8bvAsb4Se9f9Br2aq~Kr3eg#Rb0bzSr1auY67bZr6mNb47Mo5jTc3vRu5jRh3jPd66Ag33Cd8lIn786SnbvSb8d8Temc
+I2daXe3id#Cs0frBa1kxLa4i7CeegPr9jNdboPm6fSmegEubsGdjdTbgxDyjqHojdEriqTmg9Yb5vLu443Hf66rTa6hW7eRe6vOsaxIr9cPta6Au8bHgb9~Tl7eoPbfe
+Bid8Po64At21tRn3s4#Fr0nsRa1p1Ac5kpThriPahmUtxNpk3PuwgAmmkCmqlBkjhCfniEsj6Fmq0MdloNohcLr5tqRf6peDbl3SgmbBhcfHsotMtkiDslrRghfCnioN
+h7edFlflMc8hLvciTs287Og313#H'.replace(/(..*?)(\d)?(..)(#)?(~)?(?=[A-Z])/g,(u,v,w,x,y,z)=>{b.innerHTML+=`<center style='font:.8vw
+/.5vw arial;width:3vw;padding:.4vw;position:absolute;top:calc(50vh + ${~~(j/18)*4.5-21}vw);left:${j%18*4+13}vw;background:hsl(${
+35*(w?t=w:t)},70%,40%'>${i+1} ${y?'G':z?'L':'S'}<h2 style='text-shadow:2px 2px#222'>${v}</h2>`+((parseInt(x,36)+256*i-(68<i?570:
+1100))/100).toFixed(2)+'* '[42!=i^60!=i^83>i];j+={0:17,3:11,11:11,69:-68,55:54,87:54,101:-68}[i++]|1})"id=b bgcolor=0 text=#fff>
 ````
 
 ````
