@@ -20,6 +20,8 @@ Wallpaper:
 After JS1k:
 ---
 
+(rewritten from scratch in october 2016 in HTML + ES6, no JS packing. It's centered, responsive and with even more information)
+
 - Golfed (1024b HTML+ES6, no canvas): http://codegolf.github.io/period1k/final.min.golfed.html
 - Commented: http://codegolf.github.io/period1k/golfed.commented.html
 - Source code:
@@ -49,13 +51,13 @@ Legend
  i  |        |  
  o  |  1.00 -|--> atomic mass + stability (* = has no stable isotope)
  d  |       -|--> type: green = noble gas
- ...|________|          light green = halogen
-                        purple = metalloid
+ ...|________|          yellow-green = halogen
+                        dark purple = metalloid
                         dark blue = poor metal
                         blue = transition metal
-                        light blue = lanthanoid
-                        light green = actinoid
+                        pale green = lanthanoid
+                        pale blue = actinoid
                         brown = alkaline earth metal
-                        pink = alkali metal
-                        red = non-metal
+                        red = alkali metal
+                        purple = non-metal
 ````

@@ -5,21 +5,22 @@
 // PERIOD1k reboot
 // ===============
 
-// All thie following code is minified and placed in the body's "onload" attribute.
-// "bgcolor=0" and "text=#fff" respectively set the background black and the text white.
+// A periodic table of chemical elements in just 1kb of HTML & JS (ES6)
+
+// All the following code is minified and placed in the body's "onload" attribute (see http://codegolf.github.io/period1k/final.min.golfed.html)
+// The attributes "bgcolor=0" and "text=#fff" respectively set the background black and the text white.
 
 // Initialize i (element counter: 0 to 117)
-// Initialize j (cell counter: 0 to 187. Cells include elements in colors, and holes in black)
-// Set body's bgColor to 0 (black)
+// Initialize j (cell counter: 0 to 187. This count include elements (in colors), and the holes (in black)
 i=j=0;
 
-// Let's put many informations about the 118 elements into a big string:
+// Let's put 4 pieces of information about the 118 known elements into a big string:
 // Each line represents an element (line breaks are added here for more clarity)
-// Each line contains
-// - The current element's abbreviated name (1 to 2 characters, starting with a capital letter)
+// Each line contains:
+// - The element's abbreviated name (1 to 2 characters, starting with a capital letter)
 // - The element's type, but only if it's different from the previous element, (1 digit 0-9, optional)
 // - The element's relative atomic mass (encoded on two characters)
-// - The element's state at room temperature ("~" for liquid, "#" for gas, optional, solid by default)
+// - The element's state at room temperature ("~" for liquid or "#" for gas, optional: solid by default)
 
 'H9xc#\
 He3yk#\
@@ -142,14 +143,14 @@ Og313#\
 H'
 
 // The last uppercase char ("H") is just here to let the parser below interpret the 118th element correctly
-// The code below uses a replace() to separate the 118 elements and retrieve each piece of information, and output each cell of the periodic table in HTML.
+// The code below uses a replace() with a RegEx to separate the 118 elements, retrieve each piece of information, and output each cell of the periodic table in HTML.
 // For each element, the RegEx:
-// - Captures 1 or 2 letters (".*?" = non-greedy capture) a.k.a. the element's name, the result is stored in the variable v
-// - Captures 1 digit a.k.a. the element's type (optional), the result is stored in the variable w
-// - Captures 2 letters a.k.a. the atomic mass, the result is stored in the variable x
-// - Captures 1 character "#" a.k.a. "Gas" (optional), the result is stored in the variable y
-// - Captures 1 character "~" a.k.a "Liquid" (optional), the result is stored in the variable z
-// - Stops before the next uppercase letter (with "(?=[A-Z])" at the end)
+// - Captures 1 or 2 letters (".*?" = non-greedy capture) = the element's name, the result is stored in the variable v
+// - Captures 1 digit = the element's type (optional), the result is stored in the variable w
+// - Captures 2 letters = the atomic mass, the result is stored in the variable x
+// - Captures 1 character "#" = "Gas" (optional), the result is stored in the variable y
+// - Captures 1 character "~" = "Liquid" (optional), the result is stored in the variable z
+// - Stops before the next uppercase letter (with the lookahead "(?=[A-Z])" at the end)
 .replace(/(..*?)(\d)?(..)(#)?(~)?(?=[A-Z])/g,(u,v,w,x,y,z)=>{
   
   // Insert a center element in the page's body
@@ -160,56 +161,56 @@ H'
   // The position, top and left properties are used to place precisely each cell in the page.
   b.innerHTML+=`<center style='font:.8vw/.5vw arial;width:3vw;padding:.4vw;position:absolute;top:calc(50vh + ${
   
-    // Top offset of the current cell = calc(50vh + (period * 4.5 - 23)vw)
-    // This computation allows a vertical centering of the table
+    // Top offset of the current cell = calc(50vh + (period * 4.5 - 23)vw) - the period is the current line of the table: ~~(j/18)
+    // This computation centers the table vertically
     ~~(j/18)*4.5-21
     
   }vw);left:${
   
-    // Left offset of the current cell = (group * 4 + 13)vw
-    // This computation allows a horizontal centering of the table
+    // Left offset of the current cell = (group * 4 + 13)vw - the group is the current column of the table: j%18
+    // This computation centers the table horizontally
     j%18*4+13
     
   }vw;background:hsl(${
   
-    // Cell's background is defined in HSL. The Hue (H) is equal to w (the element's type) * 35
+    // The cell's background is defined in HSL. The Hue (H) is equal to w (the element's type) * 35
     // Saturation (S) is set to 70% and Light (L) is set to 40%.
-    // If w is not null, store its value in t
-    // If w is null, reuse the value stored in t (the color of the previous cell)
+    // If w is not null, its value is saved in the variable t
+    // If w is null, reuse the value stored in t (reuse the color of the previous cell "for free")
     // Legend:
-    // - 0: non-metals: H, C, N, O, P, S, Se.
-    // - 1: Alkaline earth metals – Be, Mg, Ca, Sr, Ba, Ra.
-    // - 2: Halogens – F, Cl, Br, I, At.
-    // - 3: Noble gases – He, Ne, Ar, Kr, Xe, Rn.
-    // - 4: Lanthanoids – La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu.
-    // - 5: Actinoids – Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md, No, Lr.
-    // - 6: Transition metals – Elements in groups 3 to 12.
-    // - 7: poor metals: Al, Ga, In, Sn, Tl, Pb, Bi, Po.
-    // - 8: Metalloids – B, Si, Ge, As, Sb, Te.
-    // - 9: Alkali metals – Li, Na, K, Rb, Cs, Fr.
+    // - 0 (purple): non-metals: H, C, N, O, P, S, Se.
+    // - 1 (brown): Alkaline earth metals – Be, Mg, Ca, Sr, Ba, Ra.
+    // - 2 (yellow-green): Halogens – F, Cl, Br, I, At.
+    // - 3 (green): Noble gases – He, Ne, Ar, Kr, Xe, Rn.
+    // - 4 (pale green): Lanthanoids – La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu.
+    // - 5 (pale blue): Actinoids – Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md, No, Lr.
+    // - 6 (blue): Transition metals – Elements in groups 3 to 12.
+    // - 7 (dark blue): poor metals: Al, Ga, In, Sn, Tl, Pb, Bi, Po.
+    // - 8 (dark purple): Metalloids – B, Si, Ge, As, Sb, Te.
+    // - 9 (red): Alkali metals – Li, Na, K, Rb, Cs, Fr.
     35*(w?t=w:t)
     
     // The closing parenthesis of the hsl parameters is omitted bcause it works fine without it.
   
   },70%,40%'>${
   
-    // Element's atomic number
+    // Element's atomic number (1 to 118)
     i+1
     
   } ${
   
-    // Element's state at room temperature (Gas / Liquid / Solid)
+    // Element's state at room temperature (G = Gas / L = Liquid / S = Solid)
     y?'G':z?'L':'S'
     
   }<h2 style='text-shadow:2px 2px#222'>${
   
     // Element's name, inside a <h2> element with text-shadow.
-    // H2 is a block-level element, and as a result, it adds line breaks before and after the element's name.
+    // H2 is a block-level element, and as a result, it adds a convenient line breaks before and after the element's name.
     v
     
   }</h2>`
   
-  // Starting here, it's shorter to concatenate the last pieces of information than to include them in the teplate literal.
+  // Starting here, it's shorter to concatenate the last two pieces of information (with +... ) than to include them in the template literal (with ${...}).
   +
   
   // Element's relative atomic mass (average weight of the element and its isotopes, pondered by their abundance, and compared to 1/12 of the mass of a carbon-12 element).
@@ -217,7 +218,7 @@ H'
   // - the mass is multiplied by 100 to get rid of the decimal part (ex: 1.00 => 100 ... 294.21 => 29421).
   // - the number is converted to 2 ASCII chars using this magic formula: x=>(x-i*256+(i>68?570:1100)).toString(36) (ex: 100 => "xc" ... 29421 => "13")
   // This formula exploits the fact that the mass * 100 is nearly equal to 256 times the atomic number plus 570 (when i>68) or 1100 (when i<68).
-  // The "difference" is smaller than 1295, and so it can be encoded on only two chars in base 36.
+  // The difference (between the mass * 100 and the atomic number * 256 + 570 or 1100) is smaller than 1295, and so it can be encoded on only two chars in base 36.
   // Here, the mass is decoded by performing exactly the opposite operation:
   ((parseInt(x,36)+256*i-(68<i?570:1100))/100).toFixed(2)
   
@@ -232,4 +233,6 @@ H'
   // And finally, increment i (next element's index)
   j+={0:17,3:11,11:11,55:54,87:54,69:-68,101:-68}[i++]|1
 })
+
+// No JS packing required, the minified code takes 1024 bytes. (and trying to pack it makes it bigger, so it's not interesting)
 </script>
