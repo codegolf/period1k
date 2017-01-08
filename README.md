@@ -1,6 +1,8 @@
 JS1K 2016 ENTRY: PERIOD1K
 ===
 
+[![Join the chat at https://gitter.im/codegolf/period1k](https://badges.gitter.im/codegolf/period1k.svg)](https://gitter.im/codegolf/period1k?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 (updated in june 2016 with the names of the four new elements)
 
 by @MaximeEuziere, @innovati and @subzey
