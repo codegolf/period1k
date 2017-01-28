@@ -142,7 +142,7 @@ Ts287\
 Og313#\
 H'
 
-// The last uppercase char ("H") is just here to let the parser below interpret the 118th element correctly
+// The last uppercase char ("H") is just here to let the parser below interpret the 118th element correctly.
 // The code below uses a replace() with a RegEx to separate the 118 elements, retrieve each piece of information, and output each cell of the periodic table in HTML.
 // For each element, the RegEx:
 // - Captures 1 or 2 letters (".*?" = non-greedy capture) = the element's name, the result is stored in the variable v
@@ -151,6 +151,7 @@ H'
 // - Captures 1 character "#" = "Gas" (optional), the result is stored in the variable y
 // - Captures 1 character "~" = "Liquid" (optional), the result is stored in the variable z
 // - Stops before the next uppercase letter (with the lookahead "(?=[A-Z])" at the end)
+// We could have avoided the final "H" in the string with the lookahead "(?=[A-Z]|$)" but it would have been 1 byte longer.
 .replace(/(..*?)(\d)?(..)(#)?(~)?(?=[A-Z])/g,(u,v,w,x,y,z)=>{
   
   // Insert a center element in the page's body
