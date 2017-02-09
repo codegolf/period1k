@@ -8,6 +8,8 @@ JS1K 2017 ENTRY: PERIOD1K RELOADED
 - Commented source: http://codegolf.github.io/period1k/golfed.commented.html
 - Minified and packed (1024b JS): http://codegolf.github.io/period1k/js1k17.html
 
+NB: This demo generates about 26kb of HTML code!
+
 ----
 
 JS1K 2016 ENTRY: PERIOD1K
