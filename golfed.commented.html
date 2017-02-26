@@ -12,9 +12,6 @@
 // initialize j (cell counter: 0 to 187. This count include elements (in colors), and the holes (in black).
 b.bgColor = i = j = 0;
 
-// "b.text="#fff" sets all the page's text white.
-b.text = '#fff';
-
 // Dataset:
 // Let's store 4 pieces of information about eact of the the 118 known elements into a big string.
 // Each line represents an element (line breaks are added here for more readability), and contains:
@@ -159,22 +156,20 @@ H'
   // Dimensions in vw unit make the table responsive.
   // An ES6 template literal is used to avoid many concatenations.
   // The "font" css property is used to set the Arial font-family and a responsive font-size and line-height to the text.
-  // The width is used to make the cells responsive (the height is automatically identical everywhere)
-  // The position, top and left properties are used to place precisely each cell in the page.
-  b.innerHTML += `<center style='font:.8vw/.2vw arial;width:2.6vw;padding:.5vw;position:absolute;top:calc(50vh + ${
+  // The width is used to make the cells responsive (the height is automatically identical everywhere).
+  // The position absolute and the margins are used to place precisely each cell in the page.
+  b.innerHTML += `<center style=color:#fff;font:.8vw/.2vw'arial';width:2.6vw;padding:.5vw;position:absolute;margin:${
   
-    // Top offset of the current cell = calc(50vh + (period * 3.8 - 19)vw).
+    // Top offset of the current cell = (period * 3.8 + 2)vw.
     // The period is the current line of the table: ~~(j/18).
-    // The 19vw top offset centers the table vertically.
+    ~~(j / 18) * 3.8 + 2
     
-    ~~(j / 18) * 3.8 - 19
-    
-  }vw);left:${
+  }vw+${
   
-    // Left offset of the current cell = (group * 3.8 + 17)vw.
+    // Left offset of the current cell = (group * 3.8 + 14)vw.
     // The group is the current column of the table: j%18.
-    // The 16vw left centers the table horizontally.
-    j % 18 * 3.8 + 16
+    // The 14vw left offset helps centering the table horizontally.
+    j % 18 * 3.8 + 14
     
   }vw;background:hsl(${
   
@@ -193,11 +188,9 @@ H'
     // - 7 (dark blue): poor metals: Al, Ga, In, Sn, Tl, Pb, Bi, Po.
     // - 8 (dark purple): Metalloids – B, Si, Ge, As, Sb, Te.
     // - 9 (red): Alkali metals – Li, Na, K, Rb, Cs, Fr.
-    35 * (w ? t = w : t)
-    
-    // The closing parenthesis of the hsl parameters is omitted bcause it works fine without it.
+    w ? t = w * 35 : t
   
-  },70%,40%'>${
+  },70%,40%)>${
   
     // Element's atomic number (1 to 118)
     i + 1
@@ -230,8 +223,8 @@ H'
   // Here, the mass is decoded by performing exactly the opposite operation:
   ((parseInt(x,36) + 256 * i - (68 < i ? 570 : 1100)) / 100).toFixed(2)
   
-  // Add a decimal to the 4 first elements' atomic mass (respectively 8, 3, 2 and 1)
-  + ["8312"[i]]
+  // Add a decimal to the 5 first elements' atomic mass (respectively 8, 3, 1, 2 and 1)
+  + ["83121"[i]]
   
   // Add a "*" if the element is unstable a.k.a. has no stable isotope (elements 43, 61 and 84 to 118).
   // The following code is similar to '[42==i||60==i||83>i]', but shorter.
@@ -244,7 +237,10 @@ H'
   // - jump -68 cells after elements 70 and 102.
   // And finally, increment i (next element's index).
   j += {0:17, 3:11, 11:11, 55:54, 87:54, 69:-68, 101:-68}[i++] | 1
-})
+});
+
+// Make the body (b) a little higher than the table. (if the screen is too short, the page will be scrollable).
+b.style.height="42vw"
 
 // No JS packing required, the minified code takes 1023 bytes. (and trying to pack it makes it bigger, so it's not interesting)
 </script>
